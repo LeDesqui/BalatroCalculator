@@ -99,6 +99,11 @@ public class ManoEscaleraReal implements ManosPokerUso {
     public ArrayList<ArrayList<Carta>> getPokerHand2(){
         ArrayList<ArrayList<Carta>> mano = new ArrayList<>();
         if(!isPokerHand(cartas)){ return mano; }
+
+        ArrayList<ArrayList<Carta>> todasEsca = this.getPokerHand2();
+        for (ArrayList<Carta> cartas2 : todasEsca) {
+            mano.add(cartas2);
+        }
         return mano;
     }
 

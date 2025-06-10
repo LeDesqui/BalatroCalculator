@@ -81,6 +81,9 @@ public class ManoEscaleraCorrida implements ManosPokerUso {
         cartas.add(new Carta(Corazon, "A", null, null, null));
         cartas.add(new Carta(Corazon, "A", null, null, null));
         cartas.add(new Carta(Corazon, "K", null, null, null));
+
+
+        cartas.add(new Carta(Corazon, "K", null, null, null));
         cartas.add(new Carta(Corazon, "K", null, null, null));
 
 

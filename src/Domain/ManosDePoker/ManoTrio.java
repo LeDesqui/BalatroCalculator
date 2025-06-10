@@ -63,6 +63,8 @@ public class ManoTrio implements ManosPokerUso {
         return trio;
     }
 
+
+    //combinaciones de 3 para los trios
     private List<List<Carta>> obtenerCombinacionesDeTres(List<Carta> lista) {
         List<List<Carta>> combinaciones = new ArrayList<>();
         for (int i = 0; i < lista.size(); i++) {
