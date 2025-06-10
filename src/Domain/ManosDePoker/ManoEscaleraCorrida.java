@@ -45,7 +45,7 @@ public class ManoEscaleraCorrida implements ManosPokerUso {
 
         ArrayList<ArrayList<Carta>> todasEsca = corrida.getPokerHand2();
         for(ArrayList<Carta> cartas2 : todasEsca) {
-            if(color.isPokerHand(cartas2)) {
+            if(color.isPokerHand(cartas2) && corrida.isPokerHand(cartas2)) {
                 mano.addAll(cartas2);
             }
         }
@@ -53,6 +53,9 @@ public class ManoEscaleraCorrida implements ManosPokerUso {
         return mano;
 
     }
+
+
+
     @Override
     public ArrayList<ArrayList<Carta>> getPokerHand2(){
         ArrayList<ArrayList<Carta>> mano = new ArrayList<>();
