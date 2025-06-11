@@ -6,28 +6,76 @@ import Domain.ManosPokerUso;
 import java.util.*;
 import java.util.stream.Collectors;
 
-public class ManoEscaleraReal implements ManosPokerUso {
+import static Domain.TipoMano.Corazon;
+import static Domain.TipoMano.Pica;
+
+public class ManoEscaleraReal extends Escalera implements ManosPokerUso {
     private ArrayList<Carta> cartas;
 
     public ManoEscaleraReal(ArrayList<Carta> cartas) {
         this.cartas = cartas;
     }
 
+    public static void main(String[] args) {
+        ArrayList<Carta> cartas = new ArrayList<Carta>();
+
+        cartas.add(new Carta(Pica, "A", null, null, null));
+        cartas.add(new Carta(Pica, "J", null, null, null));
+        cartas.add(new Carta(Pica, "10", null, null, null));
+        cartas.add(new Carta(Pica, "Q", null, null, null));
+        cartas.add(new Carta(Pica, "Q", null, null, null));
+        cartas.add(new Carta(Pica, "Q", null, null, null));
+        cartas.add(new Carta(Pica, "K", null, null, null));
+        cartas.add(new Carta(Pica, "K", null, null, null));
+        cartas.add(new Carta(Pica, "9", null, null, null));
+
+
+        cartas.add(new Carta(Corazon, "A", null, null, null));
+        cartas.add(new Carta(Corazon, "A", null, null, null));
+        cartas.add(new Carta(Corazon, "A", null, null, null));
+        cartas.add(new Carta(Corazon, "K", null, null, null));
+
+
+        cartas.add(new Carta(Corazon, "K", null, null, null));
+        cartas.add(new Carta(Corazon, "K", null, null, null));
+
+
+        ManoEscaleraReal m = new ManoEscaleraReal(cartas);
+
+
+        Boolean t = m.isPokerHand(cartas);
+        System.out.println(t);
+        m.getPokerHand().stream().forEach(z -> System.out.println("Tipo " + z.getTipo() + " Valor: " + z.getValor()));
+
+        ArrayList<ArrayList<Carta>> fullHouses = m.getPokerHand2();
+        System.out.println(fullHouses.size());
+        System.out.println("Número de combinaciones: " + fullHouses.size());
+        for (ArrayList<Carta> combinacion : fullHouses) {
+            String valores = combinacion.stream()
+                    .map(Carta::getValor)
+                    .collect(Collectors.joining(""));
+            System.out.println(valores);
+        }
+    }
+
     @Override
     public boolean isPokerHand(ArrayList<Carta> cartas){
-
         if(cartas.size() <5){
             return false;
         }
-        ArrayList<Integer> escalera1 = new ArrayList<>(Arrays.asList(10,11,12,13,14));
+
         List<Integer> lista = cartas.stream().map(c-> nuevoValor1(c))
                 .sorted()
                 .collect(Collectors.toList());
-        ArrayList<Integer> escaleraAux = new ArrayList<>(lista);
-        if(lista.size()<5){
-            return false;
-        }
-        return esEscalera(escaleraAux,escalera1);
+
+        List<Integer> lista1 = cartas.stream()
+                .map(this::nuevoValor1)
+                .filter(n -> n >= 10)
+                .distinct()
+                .sorted()
+                .collect(Collectors.toList());
+
+        return esEscalera(lista1);
     }
 
     @Override
@@ -36,63 +84,18 @@ public class ManoEscaleraReal implements ManosPokerUso {
         if(!isPokerHand(cartas)){
             return mano;
         }
-        ArrayList<Integer> escalera1 = new ArrayList<>(Arrays.asList(10,11,12,13,14));
-        List<Integer> lista = cartas.stream().map(c-> nuevoValor1(c))
+        List<Integer> lista =
+                cartas.stream()
+                        .map(c -> nuevoValor1(c))
+                        .filter(n -> n >= 10)
+                        .distinct()
                 .sorted()
                 .collect(Collectors.toList());
-        ArrayList<Integer> escaleraAux = new ArrayList<>(lista);
-        mano.addAll(obtenerCartasPorValores(escaleraAux, cartas));
+
+
+        mano.addAll(obtenerCartasPorValores(new HashSet<>(lista), cartas));
 
         return mano;
-    }
-
-    private List<Carta> obtenerCartasPorValores(List<Integer> valoresEscalera, List<Carta> cartas) {
-        Set<Carta> cartasEscalera = new HashSet<>();
-
-        for (Integer valor : valoresEscalera) {
-            for (Carta carta : cartas) {
-                if (nuevoValor1(carta) == valor ) {
-                    cartasEscalera.add(carta);
-                    break;
-                }
-            }
-        }
-        return new ArrayList<>(cartasEscalera);
-    }
-
-
-    public int nuevoValor1(Carta carta){
-        switch (carta.getValor()){
-            case "J":
-                return 11;
-            case "Q":
-                return 12;
-            case "K":
-                return 13;
-            case "A":
-                return 14;
-            default:
-                return Integer.parseInt(carta.getValor());
-        }
-
-    }
-
-    public static boolean esEscalera(ArrayList<Integer> lista1, ArrayList<Integer> lista2) {
-        int j = 0;
-
-        for (int i = 0; i <= lista2.size() - 5; i++) {
-            boolean esConsecutivo = true;
-            for (j = 0; j < 5; j++) {
-                if (!lista2.get(i + j).equals(lista1.get(j))) {
-                    esConsecutivo = false;
-                    break;
-                }
-            }
-            if (esConsecutivo) {
-                return true;
-            }
-        }
-        return false;
     }
 
     @Override
@@ -100,10 +103,13 @@ public class ManoEscaleraReal implements ManosPokerUso {
         ArrayList<ArrayList<Carta>> mano = new ArrayList<>();
         if(!isPokerHand(cartas)){ return mano; }
 
-        ArrayList<ArrayList<Carta>> todasEsca = this.getPokerHand2();
-        for (ArrayList<Carta> cartas2 : todasEsca) {
-            mano.add(cartas2);
+        ArrayList<Carta> cartasEscalera = getPokerHand();
+        List<List<Carta>> subEscaleras = obtenerSubescaleras(cartasEscalera);
+        for (List<Carta> cartas : subEscaleras) {
+            ArrayList<Carta> manoCartas2 = new ArrayList<>(cartas);
+            mano.add(manoCartas2);
         }
+
         return mano;
     }
 
