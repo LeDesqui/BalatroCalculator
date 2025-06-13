@@ -2,9 +2,10 @@ package Domain;
 
 public class Joker {
     private String nombre;
-    private int efecto;
-    public Joker(String name, int efeccto){
+    private Mejora mejora;
+
+    public Joker(String name, Mejora mejora) {
         this.nombre = name;
-        this.efecto = efeccto;
+        this.mejora = mejora;
     }
 }

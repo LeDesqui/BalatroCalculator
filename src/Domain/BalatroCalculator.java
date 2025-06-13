@@ -15,12 +15,28 @@ public class BalatroCalculator {
     private Mazo mazo;
     private Mano mano;
     private ArrayList<Carta> cartasSeleccionadas;
+    private HashMap<ManoDePoker, ArrayList<Integer>> planetarias;
+
+
+
 
     public BalatroCalculator() {
         this.mazo = new Mazo();
         this.mano = new Mano();
         this.cartasSeleccionadas = new ArrayList<>();
+        this.planetarias = new HashMap<>();
     }
+
+    public static void main(String[] args) {
+        BalatroCalculator calculator = new BalatroCalculator();
+        calculator.seleccionarCartas();
+        calculator.MejorJugada();
+
+    }
+
+
+
+
 
     public void seleccionarCartas(){
 
@@ -53,22 +69,19 @@ public class BalatroCalculator {
         mano.seleccionarMano(this.cartasSeleccionadas);
     }
 
+    public void ponerPlanetarias(CartasPlanetarias carta, int nivel) {
+        ArrayList<Integer> potencia = new ArrayList<>();
+        ManoDePoker mano = carta.getManoDePoker();
+        int fichas = carta.getFicha() * nivel;
+        int multi = carta.getMulti() * nivel;
+        potencia.add(fichas);
+        potencia.add(multi);
 
-    public int puntosPosibles(ManoDePoker mano, ArrayList<Carta> cartas){
-        int fichas = mano.getFicha();
-        int multi = mano.getMulti();
-        for (Carta c : cartas) {
-            fichas += c.jugarCarta();
-        }
-        return fichas * multi;
-    }
-
-    public static void main(String[] args) {
-        BalatroCalculator calculator = new BalatroCalculator();
-        calculator.seleccionarCartas();
-        calculator.MejorJugada();
+        planetarias.put(mano, potencia);
 
     }
+
+
 
     public HashMap<Integer, ArrayList<Carta>> mejorBarajaDeMano(ManoDePoker mano, ArrayList<ArrayList<Carta>> cartas) {
         HashMap<Integer, ArrayList<Carta>> best = new HashMap<>();
@@ -159,4 +172,13 @@ public class BalatroCalculator {
         }
     }
 
+    public int puntosPosibles(ManoDePoker mano, ArrayList<Carta> cartas) {
+        ArrayList<Integer> potencia = planetarias.get(mano);
+        this.mano.setManoDePoker(mano);
+
+        for (Carta c : cartas) {
+            c.jugarCarta(this.mano);
+        }
+        return this.mano.calcularPuntaje();
+    }
 }
