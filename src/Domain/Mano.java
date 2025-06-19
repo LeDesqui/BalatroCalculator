@@ -7,6 +7,7 @@ public class Mano {
     private int multi;
     private double multiMultiplicativo;
     private ArrayList<Carta> cartas;
+    private ArrayList<Carta> cartasJugadas;
     private ArrayList<Joker> jokers;
     private ManoDePoker manoDePoker;
 
@@ -28,6 +29,10 @@ public class Mano {
         this.manoDePoker = manoDePoker;
         this.fichas = manoDePoker.getFicha();
         this.multi = manoDePoker.getMulti();
+    }
+
+    public void setManoJugada(ArrayList<Carta> cartasJugada) {
+        this.cartasJugadas = cartasJugada;
     }
 
     public void selecionaCarta(Carta carta){
@@ -69,7 +74,14 @@ public class Mano {
     }
 
     public int calcularPuntaje() {
-        return (int) (fichas * (multi * multiMultiplicativo));
+        int resultado = (int) (fichas * (multi * multiMultiplicativo));
+
+        for (Carta carta : cartasJugadas) {
+            if (carta.getMejora() instanceof SteelCard) {
+                resultado *= 1.5;
+            }
+        }
+        return resultado;
     }
 
 }

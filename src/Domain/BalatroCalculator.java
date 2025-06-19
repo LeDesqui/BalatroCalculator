@@ -175,7 +175,7 @@ public class BalatroCalculator {
     public int puntosPosibles(ManoDePoker mano, ArrayList<Carta> cartas) {
         ArrayList<Integer> potencia = planetarias.get(mano);
         this.mano.setManoDePoker(mano);
-
+        this.mano.setManoJugada(cartas);
         for (Carta c : cartas) {
             c.jugarCarta(this.mano);
         }

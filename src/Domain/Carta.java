@@ -78,6 +78,9 @@ public  class Carta {
         return this.sello;
     }
 
+    public Mejora getMejora() {
+        return this.mejora;
+    }
 
 }
 
