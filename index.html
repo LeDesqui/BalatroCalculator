@@ -11,38 +11,78 @@
 
 
 <div class="sidebar">
+    <div class="logo">
+        <img alt="" height="80" src="src/presentacion/recursos/Balatrologo.png" width="200">
+    </div>
+
     <div class="contenedorCiega">
-        <div class="Ciega"></div>
-
+        <button class="Ciega"></button>
         <p>ciegas</p>
-
     </div>
 
     <div class="contenedorPuntaje">
         <p>Puntaje</p>
         <div class="miniContenedor">
-            <p>100</p>
+            <span class="puntaje"> 0 </span>
         </div>
     </div>
 
     <div class="contenedorMano">
-        <p>Mano</p>
+        <span id="mano"> Quintilla De Color </span>
 
         <div class="grupoContenedores">
             <div class="contenedorFichas">
-                <p>100</p>
+                <span id="ficha"> 0 </span>
             </div>
-            <p>X</p>
+            <span id="LaEquis"> X </span>
             <div class="contenedorMulti">
-                <p>10</p>
+                <span id="multi"> 0 </span>
             </div>
         </div>
     </div>
+    <br>
+    <div class="contenedorBotonesTag">
+        <button class="botonJokerTag"></button>
+        <button class="botonPlanetaTag"></button>
+        <button class="botonMejorManoTag"></button>
+        <button class="botonAutoManoTag"></button>
+        <button class="botonEliminarTag"></button>
+    </div>
+
+</div>
+
+<div class="contenedorJokers"></div>
+<div class="contenedorCartas1"></div>
+
+<div class="contenedorCartas2">
+    <button class="Baraja" onclick="openCards()"></button>
+</div>
+
+<div class="contenedorCartasParaJugar" id="cartasJugar" style="display:none;"></div>
+<div class="cartaJugada">
+    <div class="miniContenedor">
+        <div class="contenedorCarta">
+            <div class="contenedorCarta2" id="cartaSeleccionada">
+                <div class="test"></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="contenedorBotones">
+        <button class="tipoCarta" id=" encantamientoCarta"> Encantamiento</button>
+        <button class="tipoCarta" id="edicionCarta">Edicion</button>
+        <button class="tipoCarta" id="selloCarta"> Sello</button>
+    </div>
+
+    <button class="botonJugarCarta"> Seleccionar</button>
+    <button class="botonEliminarCarta"> X</button>
 
 
 </div>
 
 
+<script src="src/presentacion/botonesPagina.js">
+</script>
 </body>
 
 </html>
