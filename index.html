@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <title>meow</title>
     <Link href="src/presentacion/EstiloPagina.css" rel="stylesheet" type="text/css">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
 </head>
 
 <body>
@@ -46,36 +47,41 @@
         <button class="botonPlanetaTag"></button>
         <button class="botonMejorManoTag"></button>
         <button class="botonAutoManoTag"></button>
-        <button class="botonEliminarTag"></button>
+        <button class="botonEliminarTag" onclick="eliminarCartasSeleccionadas()"></button>
     </div>
 
 </div>
 
-<div class="contenedorJokers"></div>
-<div class="contenedorCartas1"></div>
+<div class="contenedorJokers" id="jokerSeleccionados"></div>
+<div class="contenedorCartas1" id="cartasSeleccionadas">
+</div>
 
 <div class="contenedorCartas2">
     <button class="Baraja" onclick="openCards()"></button>
 </div>
 
 <div class="contenedorCartasParaJugar" id="cartasJugar" style="display:none;"></div>
-<div class="cartaJugada">
+
+<div class="cartaJugada" id="cartaJugada" style="display:none;">
     <div class="miniContenedor">
         <div class="contenedorCarta">
             <div class="contenedorCarta2" id="cartaSeleccionada">
-                <div class="test"></div>
             </div>
         </div>
     </div>
 
-    <div class="contenedorBotones">
-        <button class="tipoCarta" id=" encantamientoCarta"> Encantamiento</button>
-        <button class="tipoCarta" id="edicionCarta">Edicion</button>
-        <button class="tipoCarta" id="selloCarta"> Sello</button>
+    <div class="contenedorBotones" id="contenedorBotones" style="display:flex;">
+        <button class="tipoCarta" id="encantamientoCarta" onclick="ponerElementos(this)"> Encantamiento</button>
+        <button class="tipoCarta" id="edicionCarta" onclick="ponerElementos(this)">Edicion</button>
+        <button class="tipoCarta" id="selloCarta" onclick="ponerElementos(this)"> Sello</button>
     </div>
 
-    <button class="botonJugarCarta"> Seleccionar</button>
-    <button class="botonEliminarCarta"> X</button>
+    <button class="botonAtras" onclick="botonAtras()"> <-</button>
+    <button class="botonJugarCarta" onclick="seleccionarCartaSeleccion()"> Seleccionar</button>
+    <button class="botonEliminarCarta" onclick="sacarCartaJugada()"> X</button>
+
+    <div class="miniContenedor2" id="contenedorBotones2" style="display:none;">
+    </div>
 
 
 </div>
