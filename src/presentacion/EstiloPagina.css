@@ -117,7 +117,7 @@ body {
 
 .contenedorPuntaje .miniContenedor {
     width: 100%;
-    height: auto;
+    height: 90%;
     border-radius: 10px;
     background-color: #2F3A3C;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
@@ -128,7 +128,6 @@ body {
 
 .contenedorPuntaje .miniContenedor .puntaje {
     background-color: red;
-    font-size: 3vw;
     width: 80%;
     height: 70%;
     text-align: center;
@@ -152,6 +151,7 @@ body {
     align-items: center;
     gap: 1em;
     flex-wrap: nowrap;
+    overflow: clip;
 }
 
 .contenedorMano .contenedorFichas {
@@ -186,20 +186,20 @@ body {
 }
 
 #mano {
-    font-size: 250%;
+    font-size: 2.8vw;
 }
 
 #ficha {
-    font-size: 300%;
+    font-size: 3vw;
 }
 
 #multi {
-    font-size: 300%;
+    font-size: 3vw;
 }
 
 #LaEquis {
 
-    font-size: 300%;
+    font-size: 3vw;
     color: #FF4A45;
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
 }
@@ -214,13 +214,16 @@ body {
     margin: 1%;
 }
 
+
+/* Cada icono tiene 67 widthx66height px  o 18% en width */
+
 .botonJokerTag {
     background-color: transparent;
-    width: 67px;
-    height: 66px;
+    width: 5vw;
+    height: 5vw;
     background-image: url('recursos/tags.png');
     background-position: 0 0;
-    background-size: 408px 340px;
+    background-size: 612% 510%;
     border: none;
     cursor: pointer;
     image-rendering: pixelated;
@@ -228,11 +231,11 @@ body {
 
 .botonPlanetaTag {
     background-color: transparent;
-    width: 67px;
-    height: 66px;
+    width: 5vw;
+    height: 5vw;
     background-image: url('recursos/tags.png');
-    background-position: -204px -136px;
-    background-size: 408px 340px;
+    background-position: 60% 50%;
+    background-size: 612% 510%;
     border: none;
     cursor: pointer;
     image-rendering: pixelated;
@@ -241,11 +244,11 @@ body {
 
 .botonMejorManoTag {
     background-color: transparent;
-    width: 67px;
-    height: 66px;
+    width: 5vw;
+    height: 5vw;
     background-image: url('recursos/tags.png');
-    background-position: -272px -204px;
-    background-size: 408px 340px;
+    background-position: 80% 75%;
+    background-size: 612% 510%;
     border: none;
     cursor: pointer;
     image-rendering: pixelated;
@@ -254,11 +257,11 @@ body {
 
 .botonAutoManoTag {
     background-color: transparent;
-    width: 67px;
-    height: 66px;
+    width: 5vw;
+    height: 5vw;
     background-image: url('recursos/tags.png');
-    background-position: -68px -204px;
-    background-size: 408px 340px;
+    background-position: 20% 75%;
+    background-size: 612% 510%;
     border: none;
     cursor: pointer;
     image-rendering: pixelated;
@@ -267,11 +270,11 @@ body {
 
 .botonEliminarTag {
     background-color: transparent;
-    width: 67px;
-    height: 66px;
+    width: 5vw;
+    height: 5vw;
     background-image: url('recursos/tags.png');
-    background-position: -136px -204px;
-    background-size: 408px 340px;
+    background-position: 40% 75%;
+    background-size: 612% 510%;
     border: none;
     cursor: pointer;
     image-rendering: pixelated;
@@ -279,12 +282,17 @@ body {
 }
 
 .contenedorBotonesTag {
+    width: 95%;
+    height: auto;
     background-color: transparent;
+    padding: 2%;
     display: flex;
     gap: 1em;
     justify-content: center;
-    width: 100%;
+    align-items: center;
     flex-wrap: wrap;
+    box-sizing: border-box;
+    border-radius: 10px;
 }
 
 
