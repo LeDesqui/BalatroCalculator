@@ -41,7 +41,7 @@ body {
     display: flex;
     align-items: center;
     flex-direction: column;
-    gap: 1em;
+    gap: 2vh;
     padding-top: 10px;
     margin-right: 5vw;
 }
@@ -296,15 +296,26 @@ body {
 }
 
 
-/* intentnar con 20.5 o 15 el height */
-.contenedorCartas1 {
+.contenedorBottom {
+    background-color: transparent;
     position: fixed;
-    background-color: rgba(0, 0, 0, 0.3);
-    width: 62vw;
+    width: 70vw;
     height: 20.5vh;
     bottom: 5%;
-    left: 58%;
+    left: 62%;
     transform: translateX(-50%);
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 2vw;
+}
+
+/* intentnar con 20.5 o 15 el height */
+.contenedorCartas1 {
+    background-color: rgba(0, 0, 0, 0.3);
+    width: 90%;
+    height: 100%;
     border-radius: 10px;
     display: flex;
     flex-direction: row;
@@ -345,12 +356,9 @@ body {
 
 
 .contenedorCartas2 {
-    position: fixed;
     background-color: rgba(0, 0, 0, 0.3);
-    height: 20.5vh;
+    height: 100%;
     aspect-ratio: 71/95;
-    bottom: 5%;
-    right: 20px;
     border-radius: 10px;
     display: flex;
     align-items: center;
