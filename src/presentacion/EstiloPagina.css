@@ -49,7 +49,7 @@ body {
 
 .logo {
     width: 95%;
-    height: 18%;
+    height: auto;
     background-color: transparent;
     border: none;
     box-sizing: border-box;
@@ -59,6 +59,7 @@ body {
     flex-direction: column;
     text-align: center;
     image-rendering: pixelated;
+    aspect-ratio: 95 /18;
 
 }
 
@@ -374,7 +375,7 @@ body {
     height: 20vh;
     top: 1%;
     left: 62%;
-    transform: translateX(-50%);
+    transform: translateX(-50%);    
     border-radius: 10px;
     display: flex;
 }
@@ -394,6 +395,7 @@ body {
 }
 
 .contenedorCartasParaJugar {
+
     position: fixed;
     background-color: #1E2B2D;
     width: 90.5vw;
@@ -404,24 +406,23 @@ body {
     box-shadow: 1px 0 #A16E00, 2px 0 #A26D00, 3px 0 #A56D00;
     border-radius: 10px;
     display: grid;
-    grid-template-columns: repeat(13, 106.5px);
-    grid-template-rows: repeat(4, 142.5px);
-    gap: 0;
-    padding: 1em;
+    grid-template-columns: repeat(13, minmax(0, 1fr));
+    grid-template-rows: repeat(4, minmax(0, 1fr));
+    padding: 1%;
 }
 
 
 .carta {
     margin: 0;
-    width: 106.5px;
-    height: 142.5px;
+    width: 100%;
+    height: auto;
     background-image: url('recursos/cartastest.png'), url(recursos/fondosYBarajas.png);
     background-repeat: no-repeat;
-    background-size: 1384.5px 570px, 745.5px 712.5px;
+    background-size: 1300% 400%, 700% 500%;
     display: inline-block;
     cursor: pointer;
     image-rendering: pixelated;
-
+    aspect-ratio: 71 / 95;
 }
 
 .carta:hover {
@@ -431,7 +432,6 @@ body {
 
 .cartaJugada {
     font-family: 'nuevaFuente', serif;
-    font-size: 6vh;
     position: fixed;
     width: 50vw;
     height: 60vh;
@@ -446,43 +446,47 @@ body {
 .cartaJugada .miniContenedor {
     position: fixed;
     width: 16vw;
-    height: 45vh;
+    height: auto;
     top: 45%;
     left: 20%;
     transform: translate(-50%, -50%);
     background-color: #1E2B2D;
     border-radius: 10px;
     box-shadow: 0 1px #0B1415, 0 2px #0B1415, 0 3px #0D1718, 0 4px #243437;
+    aspect-ratio: 71 / 95;
 }
 
 
 .cartaJugada .contenedorCarta {
     position: fixed;
     width: 15vw;
-    height: 42vh;
+    height: auto;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
     background-color: #3A5055;
     border-radius: 10px;
     box-shadow: 0 1px #304347, 0 2px #1E2B2D, 0 3px #1E2B2D;
+    aspect-ratio: 71 / 95;
 }
 
 .cartaJugada .contenedorCarta2 {
     position: fixed;
     width: 14vw;
-    height: 39vh;
+    height: auto;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
     background-color: #1E2B2D;
     border-radius: 10px;
     border: none;
+    aspect-ratio: 71 / 95;
 }
 
 
 .cartaJugada .botonAtras {
     font-family: 'nuevaFuente', serif;
+    font-size: clamp(5%, 100%, 2.5rem);
     color: #FFFFFF;
     position: fixed;
     width: 5vw;
@@ -511,8 +515,8 @@ body {
 
 .cartaJugada .botonJugarCarta {
     font-family: 'nuevaFuente', serif;
+    font-size: clamp(5%, 100%, 2.5rem);
     color: #FFFFFF;
-    font-size: 5vh;
     position: fixed;
     width: 35vw;
     height: 5vh;
@@ -539,7 +543,7 @@ body {
 
 .cartaJugada .botonEliminarCarta {
     font-family: 'nuevaFuente', serif;
-    font-size: 5vh;
+    font-size: clamp(5%, 100%, 2.5rem);
     color: #FFFFFF;
     position: fixed;
     width: 5vw;
@@ -570,7 +574,7 @@ body {
     width: 10vw;
     height: 45vh;
     top: 0;
-    left: 60%;
+    left: 55%;
     position: fixed;
     display: flex;
     align-items: center;
@@ -583,12 +587,12 @@ body {
 
 .contenedorBotones .tipoCarta {
     font-family: 'nuevaFuente', serif;
-    font-size: 4vh;
+    font-size: clamp(5%, 3vw, 2.5rem);;
     background-color: #4C6367;
     border: none;
     border-radius: 10px;
-    width: 12vw;
-    height: 5vh;
+    width: fit-content;
+    height: 5.5vh;
     box-shadow: 0 1px #4B6266, 0 2px #455B60, 0 3px #223337;
     display: flex;
     align-items: center;
@@ -597,6 +601,7 @@ body {
     color: white;
     cursor: pointer;
     text-shadow: 0 1px #939B9D, 0 2px #2C3C40, 0 3px #304145;
+    white-space: nowrap;
 }
 
 .contenedorBotones .tipoCarta:hover {
@@ -605,18 +610,19 @@ body {
     box-shadow: 0 1px #27373A, 0 2px #273739, 0 3px #223235;
 }
 
-/* cada carta 8.35&v  33.05  pero tmb puede ser 33.5 probar con ambas no olvidar*/
+/* cada carta 8.35% y   33.05%  pero tmb puede ser 33.5 probar con ambas no olvidar*/
 /*            ;
  */
 .cartaJugada .test {
     width: 100%;
-    height: 100%;
+    height: auto;
     background-image: url(recursos/fondosYBarajas.png), url('recursos/cartastest.png'), url(recursos/fondosYBarajas.png);
     background-repeat: no-repeat;
     background-size: 700% 500%, 1300% 400%, 700% 500%;
     background-color: transparent;
     border: none;
     image-rendering: pixelated;
+    aspect-ratio: 71 / 95;
 }
 
 
@@ -656,6 +662,7 @@ body {
     box-sizing: border-box;
     grid-auto-rows: auto;
     place-items: center;
+    overflow: auto;
 }
 
 #contenedorBotones2 .miniContenedor2 {

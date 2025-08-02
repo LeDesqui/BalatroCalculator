@@ -8,12 +8,13 @@ function generarCartas() {
     const coords = generarCoords();
 
     coords.forEach((coordenada, index) => {
-        let x = 1.5 * coordenada[0];
-        let y = 1.5 * coordenada[1];
+        let x = coordenada[0];
+        let y = coordenada[1];
         const carta = document.createElement('div');
         carta.classList.add('carta');
         carta.setAttribute('data-numero', index + 1);
-        carta.style.backgroundPosition = `-${x}px -${y}px , -106.5px 0px`;
+        carta.style.backgroundPosition = `${x}% ${y}% , 16.7% 0%`;
+        console.log("Equis: " + x, " Ye: " + y);
         carta.onclick = () => mostrarCartaSeleccion(index + 1);
         contenedor.appendChild(carta);
     });
@@ -77,8 +78,8 @@ function getCartaPosition(col, fila, columnas, filas) {
 
 function generarCoords() {
     let coords = [];
-    const alto = 95;
-    const ancho = 71;
+    const alto = 33.5;
+    const ancho = 8.35;
     let xInicial = 0;
     let yInicial = 0;
     let yFinal = alto;
